@@ -1,4 +1,4 @@
-# pragma once
+#pragma once
 
 const double REBAR_RADIUS = 11;
 const double PROTECTIVE_LAYER_THICKNESS = 100;
