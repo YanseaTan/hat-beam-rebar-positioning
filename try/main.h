@@ -1,24 +1,39 @@
 # pragma once
 
-const int RADIUS = 11;
-const int LAYER = 100;
+const double rebarRadius = 11;
+const double protectiveLayerThickness = 100;
+const double topRebarLength = 300;
 
-int height = 0;
-int width = 0;
+class HatBeamData
+{
+public:
+    HatBeamData();
+    virtual ~HatBeamData();
 
-int a_x = 0;
-int a_y = 0;
-int b_x = 0;
-int b_y = 0;
-int c_x = 0;
-int c_y = 0;
-int d_x = 0;
-int d_y = 0;
-int e_x = 0;
-int e_y = 0;
-int g_x = 0;
-int g_y = 0;
-int h_x = 0;
-int h_y = 0;
-int j_x = 0;
-int j_y = 0;
+public:
+    double m_hatBeamHeight = 0;
+    double m_hatBeamWidth = 0;
+
+    void GetHatBeamHeight();
+    void GetHatBeamWight();
+
+public:
+    double m_aX = 0;
+    double m_aY = 0;
+    double m_bX = 0;
+    double m_bY = 0;
+    double m_cX = 0;
+    double m_cY = 0;
+    double m_dX = 0;
+    double m_dY = 0;
+    double m_eX = 0;
+    double m_eY = 0;
+    double m_gX = 0;
+    double m_gY = 0;
+    double m_hX = 0;
+    double m_hY = 0;
+    double m_jX = 0;
+    double m_jY = 0;
+
+    void PrintCoordinate();
+};
