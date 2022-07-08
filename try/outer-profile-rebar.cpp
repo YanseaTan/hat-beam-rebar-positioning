@@ -31,15 +31,15 @@ void HatBeamData::GetHatBeamWight()
 
 void HatBeamData::PrintCoordinate()
 {
-    m_aX = protectiveLayerThickness + 3 * rebarRadius;
-    m_aY = protectiveLayerThickness + rebarRadius + topRebarLength;
+    m_aX = PROTECTIVE_LAYER_THICKNESS + 3 * REBAR_RADIUS;
+    m_aY = PROTECTIVE_LAYER_THICKNESS + REBAR_RADIUS + TOP_REBAR_LENGTH;
     m_bX = m_aX;
-    m_bY = m_aY - topRebarLength;
+    m_bY = m_aY - TOP_REBAR_LENGTH;
     m_cX = m_hatBeamWidth - m_aX;
     m_cY = m_bY;
     m_dX = m_cX;
     m_dY = m_aY;
-    m_eX = m_aX - 2 * rebarRadius;
+    m_eX = m_aX - 2 * REBAR_RADIUS;
     m_eY = m_bY;
     m_gX = m_eX;
     m_gY = m_hatBeamHeight - m_bY;
@@ -67,7 +67,7 @@ int main()
 
     test.PrintCoordinate();
 
-    // test.~HatBeamData();
+    test.~HatBeamData();
 
     system("pause");
     return 0;

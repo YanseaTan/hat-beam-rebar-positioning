@@ -1,8 +1,8 @@
 # pragma once
 
-const double rebarRadius = 11;
-const double protectiveLayerThickness = 100;
-const double topRebarLength = 300;
+const double REBAR_RADIUS = 11;
+const double PROTECTIVE_LAYER_THICKNESS = 100;
+const double TOP_REBAR_LENGTH = 300;
 
 class HatBeamData
 {
