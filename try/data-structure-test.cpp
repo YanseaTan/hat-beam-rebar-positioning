@@ -122,20 +122,20 @@ void HatBeamData::GetBotRebarControlPointData()
 void HatBeamData::PrintOriginalData()
 {
     cout << endl
-        << "****** Structure Data ******" << endl
+        << "******** Structure Data ********" << endl
         << "Height" << "\t\t\t" << m_hatBeamHeight << endl
         << "Width" << "\t\t\t" << m_hatBeamWidth << endl
         << "Arc Rebar Radius" << "\t" << m_arcRebarRadius << endl
-        << "****************************" << endl << endl;
+        << "********************************" << endl << endl;
 
-    cout << "****** Reference Line ******" << endl
-        << "Name" << "\t\t    " << "Position" << endl;
+    cout << "******** Reference Line ********" << endl
+        << "Name" << "\t\t\t" << "Position" << endl;
     for (int i = 0; i < m_referenceLineName.size(); i++)
     {
         cout << m_referenceLineName[i] << "\t\t\t" << 
             m_referenceLinePosition[i] << endl;
     }
-    cout << "****************************" << endl << endl;
+    cout << "********************************" << endl << endl;
 
     cout << "****************** Top Rebar Control Point Data ******************"
         << endl << "ID" << "\t" << "Reference Line" << "\t    " << "Position" 
@@ -143,7 +143,7 @@ void HatBeamData::PrintOriginalData()
     for (int j = 0; j < m_topRebarControlPointPosition.size(); j++)
     {
         cout << j + 1 << "\t" << m_referenceLineName[j] << "\t\t    " << 
-            m_topRebarControlPointPosition[j] << "\t\t" << 
+            m_topRebarControlPointPosition[j] << "\t" << 
             m_topRebarControlPointStart[j] << "\t\t" << 
             m_topRebarControlPointStop[j] << endl;
     }
@@ -156,7 +156,7 @@ void HatBeamData::PrintOriginalData()
     for (int k = 0; k < m_botRebarControlPointPosition.size(); k++)
     {
         cout << k + 1 << "\t" << m_referenceLineName[k] << "\t\t    " << 
-            m_botRebarControlPointPosition[k] << "\t\t" << 
+            m_botRebarControlPointPosition[k] << "\t" << 
             m_botRebarControlPointStart[k] << "\t\t" << 
             m_botRebarControlPointStop[k] << endl;
     }
@@ -186,6 +186,9 @@ void HatBeamData::GetOuterProfileRebarCoordinate()
 
 void HatBeamData::GetTruncateRebarCoordinate()
 {
+    m_truncateRebarX.clear();
+    m_truncateRebarY.clear();
+
     for (int i = 0; i < m_topRebarControlPointStart.size(); i++)
     {
         if (m_topRebarControlPointStart[i] < 0 && m_topRebarControlPointStop[i] == 0)
