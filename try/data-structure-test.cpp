@@ -184,38 +184,61 @@ void HatBeamData::GetOuterProfileRebarCoordinate()
     m_jY = m_eY;
 }
 
-void HatBeamData::GetTruncateRebarCoordinate()
+void HatBeamData::GetRebarCoordinate()
 {
     m_truncateRebarX.clear();
     m_truncateRebarY.clear();
 
+    m_arcRebarX.clear();
+    m_arcRebarY.clear();
+    m_arcRebarTangentX.clear();
+    m_arcRebarTangentY.clear();
+    m_arcRebarCenterX.clear();
+    m_arcRebarCenterY.clear();
+
+    m_diagonalRebarX.clear();
+    m_diagonalRebarY.clear();
+    m_diagonalRebarAnotherX.clear();
+    m_diagonalRebarAnotherY.clear();
+
     for (int i = 0; i < m_topRebarControlPointStart.size(); i++)
     {
+        double tempX = 0.0;
+        double tempY = 0.0;
+        int tempNum = m_topRebarControlPointReferenceLine[i];
+        tempX = m_referenceLinePosition[tempNum - 1] + m_topRebarControlPointPosition[i];
+
         if (m_topRebarControlPointStart[i] < 0 && m_topRebarControlPointStop[i] == 0)
         {
-            int tempNum = m_topRebarControlPointReferenceLine[i];
-            double tempX = 0.0;
-            tempX = m_referenceLinePosition[tempNum - 1] - m_topRebarControlPointPosition[i];
             m_truncateRebarX.push_back(tempX);
 
-            double tempY = 0.0;
             tempY = m_bY - m_topRebarControlPointStart[i] * REBAR_RADIUS * 2;
             m_truncateRebarY.push_back(tempY);
         }
+
+        
     }
 
     for (int j = 0; j < m_botRebarControlPointStart.size(); j++)
     {
+        double tempX = 0.0;
+        double tempY = 0.0;
+        int tempNum = m_botRebarControlPointReferenceLine[j];
+        tempX = m_referenceLinePosition[tempNum - 1] + m_botRebarControlPointPosition[j];
+
         if (m_botRebarControlPointStart[j] < 0 && m_botRebarControlPointStop[j] == 0)
         {
-            int tempNum = m_botRebarControlPointReferenceLine[j];
-            double tempX = 0.0;
-            tempX = m_referenceLinePosition[tempNum - 1] - m_botRebarControlPointPosition[j];
             m_truncateRebarX.push_back(tempX);
 
-            double tempY = 0.0;
             tempY = m_gY + m_botRebarControlPointStart[j] * REBAR_RADIUS * 2;
             m_truncateRebarY.push_back(tempY);
+        }
+
+        else if (m_botRebarControlPointStart[j] == 0 && m_botRebarControlPointStop[j] == -1)
+        {
+            m_arcRebarCenterX.push_back(tempX);
+
+            
         }
     }
 }
@@ -275,7 +298,7 @@ int main()
                 break;
             case 6 :
                 test.GetOuterProfileRebarCoordinate();
-                test.GetTruncateRebarCoordinate();
+                test.GetRebarCoordinate();
                 test.PrintRebarCoordinateData();
                 system("pause");
                 break;

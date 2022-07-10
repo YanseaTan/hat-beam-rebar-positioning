@@ -76,7 +76,21 @@ public:
     vector<double> m_truncateRebarX;
     vector<double> m_truncateRebarY;
 
-    void GetTruncateRebarCoordinate();
+    // Arc Rebar Coordinate
+    vector<double> m_arcRebarX;
+    vector<double> m_arcRebarY;
+    vector<double> m_arcRebarTangentX;
+    vector<double> m_arcRebarTangentY;
+    vector<double> m_arcRebarCenterX;
+    vector<double> m_arcRebarCenterY;
+
+    // Diagonal Rebar Coordinate
+    vector<double> m_diagonalRebarX;
+    vector<double> m_diagonalRebarY;
+    vector<double> m_diagonalRebarAnotherX;
+    vector<double> m_diagonalRebarAnotherY;
+
+    void GetRebarCoordinate();
 
 public:
     void PrintOriginalData();
