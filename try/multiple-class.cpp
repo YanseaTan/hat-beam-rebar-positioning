@@ -14,7 +14,7 @@ HatBeamData::~HatBeamData()
 
 }
 
-ReferenceLineData::ReferenceLineData(const char *name, double position)
+ReferenceLineData::ReferenceLineData(char *name, double position)
 {
     m_referenceLineName = name;
     m_referenceLinePosition = position;
@@ -28,7 +28,7 @@ ReferenceLineData::~ReferenceLineData()
 int main()
 {
     HatBeamData test;
-    const char temp[] = "kd";
+    char temp[] = "kd";
     test.rl[0]->m_referenceLineName = temp;
     test.rl[0]->m_referenceLinePosition = 5000;
     test.rl[1]->m_referenceLinePosition = 10000;

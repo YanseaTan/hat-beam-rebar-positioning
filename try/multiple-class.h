@@ -30,10 +30,10 @@ public:
 class ReferenceLineData
 {
 public:
-    ReferenceLineData(const char *name, double position);
+    ReferenceLineData(char *name, double position);
     virtual ~ReferenceLineData();
 
 public:
-    const char *m_referenceLineName;
+    char *m_referenceLineName;
     double m_referenceLinePosition = 0.0;
 };
