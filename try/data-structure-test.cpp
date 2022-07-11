@@ -184,10 +184,12 @@ void HatBeamData::GetOuterProfileRebarCoordinate()
     m_jY = m_eY;
 }
 
-void HatBeamData::GetRebarCoordinate()
+void HatBeamData::GetInnerRebarCoordinate()
 {
-    m_truncateRebarX.clear();
-    m_truncateRebarY.clear();
+    m_truncateRebarOnTopX.clear();
+    m_truncateRebarOnTopY.clear();
+    m_truncateRebarOnBotX.clear();
+    m_truncateRebarOnBotY.clear();
 
     m_arcRebarX.clear();
     m_arcRebarY.clear();
@@ -201,43 +203,48 @@ void HatBeamData::GetRebarCoordinate()
     m_diagonalRebarAnotherX.clear();
     m_diagonalRebarAnotherY.clear();
 
+    // Get Truncate Rebar Coordinate
     for (int i = 0; i < m_topRebarControlPointStart.size(); i++)
     {
-        double tempX = 0.0;
-        double tempY = 0.0;
-        int tempNum = m_topRebarControlPointReferenceLine[i];
-        tempX = m_referenceLinePosition[tempNum - 1] + m_topRebarControlPointPosition[i];
-
         if (m_topRebarControlPointStart[i] < 0 && m_topRebarControlPointStop[i] == 0)
         {
-            m_truncateRebarX.push_back(tempX);
+            double tempX = 0.0;
+            int tempNum = m_topRebarControlPointReferenceLine[i];
+            tempX = m_referenceLinePosition[tempNum - 1] + m_topRebarControlPointPosition[i];
+            m_truncateRebarOnTopX.push_back(tempX);
 
+            double tempY = 0.0;
             tempY = m_bY - m_topRebarControlPointStart[i] * REBAR_RADIUS * 2;
-            m_truncateRebarY.push_back(tempY);
+            m_truncateRebarOnTopY.push_back(tempY);
         }
-
-        
     }
 
-    for (int j = 0; j < m_botRebarControlPointStart.size(); j++)
+    for (int i = 0; i < m_botRebarControlPointStart.size(); i++)
     {
-        double tempX = 0.0;
-        double tempY = 0.0;
-        int tempNum = m_botRebarControlPointReferenceLine[j];
-        tempX = m_referenceLinePosition[tempNum - 1] + m_botRebarControlPointPosition[j];
-
-        if (m_botRebarControlPointStart[j] < 0 && m_botRebarControlPointStop[j] == 0)
+        if (m_botRebarControlPointStart[i] < 0 && m_botRebarControlPointStop[i] == 0)
         {
-            m_truncateRebarX.push_back(tempX);
+            double tempX = 0.0;
+            int tempNum = m_botRebarControlPointReferenceLine[i];
+            tempX = m_referenceLinePosition[tempNum - 1] + m_botRebarControlPointPosition[i];
+            m_truncateRebarOnBotX.push_back(tempX);
 
-            tempY = m_gY + m_botRebarControlPointStart[j] * REBAR_RADIUS * 2;
-            m_truncateRebarY.push_back(tempY);
+            double tempY = 0.0;
+            tempY = m_gY + m_botRebarControlPointStart[i] * REBAR_RADIUS * 2;
+            m_truncateRebarOnBotY.push_back(tempY);
         }
+    }
 
-        else if (m_botRebarControlPointStart[j] == 0 && m_botRebarControlPointStop[j] == -1)
+    // Get Arc Rebar Coordinate
+    for (int i = 0; i < m_botRebarControlPointStart.size(); i++)
+    {
+        if (m_botRebarControlPointStart[i] == 0 && m_botRebarControlPointStop[i] == -1)
         {
-            m_arcRebarCenterX.push_back(tempX);
+            double tempX = 0.0;
+            int tempNum = m_botRebarControlPointReferenceLine[i];
+            tempX = m_referenceLinePosition[tempNum - 1] + m_botRebarControlPointPosition[i];
+            m_arcRebarX.push_back(tempX);
 
+            double tempY = 0.0;
             
         }
     }
@@ -258,10 +265,10 @@ void HatBeamData::PrintRebarCoordinateData()
         << endl << endl;
 
     cout << "*** Truncate Rebar Coordinate ***" << endl;
-    for (int i = 0; i < m_truncateRebarX.size(); i++)
+    for (int i = 0; i < m_truncateRebarOnTopX.size(); i++)
     {
-        cout << i + 1 << "\t\t    " << "(" << m_truncateRebarX[i] << ", " 
-            << m_truncateRebarY[i] << ")" << endl;
+        cout << i + 1 << "\t\t    " << "(" << m_truncateRebarOnTopX[i] << ", " 
+            << m_truncateRebarOnTopY[i] << ")" << endl;
     }
     cout << "*********************************" << endl << endl;
 }
@@ -298,7 +305,7 @@ int main()
                 break;
             case 6 :
                 test.GetOuterProfileRebarCoordinate();
-                test.GetRebarCoordinate();
+                test.GetInnerRebarCoordinate();
                 test.PrintRebarCoordinateData();
                 system("pause");
                 break;

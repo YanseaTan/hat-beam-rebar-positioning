@@ -73,8 +73,10 @@ public:
 
 public:
     // Truncate Rebar Coordinate
-    vector<double> m_truncateRebarX;
-    vector<double> m_truncateRebarY;
+    vector<double> m_truncateRebarOnTopX;
+    vector<double> m_truncateRebarOnTopY;
+    vector<double> m_truncateRebarOnBotX;
+    vector<double> m_truncateRebarOnBotY;
 
     // Arc Rebar Coordinate
     vector<double> m_arcRebarX;
@@ -90,7 +92,7 @@ public:
     vector<double> m_diagonalRebarAnotherX;
     vector<double> m_diagonalRebarAnotherY;
 
-    void GetRebarCoordinate();
+    void GetInnerRebarCoordinate();
 
 public:
     void PrintOriginalData();
