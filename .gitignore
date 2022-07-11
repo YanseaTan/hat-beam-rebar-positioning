@@ -2,6 +2,7 @@
 *.exe
 *.out
 *.app
+*.o
 
 # Idea
 .idea
